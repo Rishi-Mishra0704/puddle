@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'core',
     'items',
     'dashboard',
-    'conversation',
 ]
 
 MIDDLEWARE = [

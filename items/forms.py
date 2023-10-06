@@ -22,7 +22,7 @@ class ItemForm(forms.ModelForm):
             'price': forms.TextInput(attrs={
                 'class': INPUT_CLASSES
             }),
-            'image': forms.FileInput(attrs={
+            'images': forms.FileInput(attrs={
                 'class': INPUT_CLASSES
             })
         }

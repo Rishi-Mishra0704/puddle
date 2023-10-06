@@ -23,6 +23,7 @@ urlpatterns = [
     path("", include("core.urls")),
     path("items/", include("items.urls")),
     path("dashboard/", include("dashboard.urls")),
+    path('conversation/', include('conversation.urls')),
 ] 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

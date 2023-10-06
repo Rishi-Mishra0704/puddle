@@ -8,7 +8,8 @@ from django.contrib.auth.decorators import login_required
 
 def details(request, pk):
     item = Item.objects.get(pk=pk)
-    related_item = Item.objects.filter(category=item.category).exclude(pk=pk)[:3]
+    related_item = Item.objects.filter(
+        category=item.category).exclude(pk=pk)[:3]
 
     context = {"item": item, "related_item": related_item}
     return render(request, "items/details.html", context)
@@ -31,9 +32,6 @@ def new_item(request):
     context = {"form": form}
     return render(request, "items/new_item.html", context)
 
-
-
-
 @login_required
 def edit(request, pk):
     item = get_object_or_404(Item, pk=pk, created_by=request.user)
@@ -43,15 +41,13 @@ def edit(request, pk):
 
         if form.is_valid():
             form.save()
-
             return redirect('item:detail', pk=item.id)
     else:
-        form = EditItemForm(instance=item)
+        form = EditItemForm(instance=item)  # Define the form here
 
-    return render(request, 'item/form.html', {
-        'form': form,
-        'title': 'Edit item',
-    })
+    context = {"form": form}
+    return render(request, "items/form.html", context)
+
 
 @login_required
 def delete(request, pk):

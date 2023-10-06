@@ -26,3 +26,23 @@ class ItemForm(forms.ModelForm):
                 'class': INPUT_CLASSES
             })
         }
+
+
+class EditItemForm(forms.ModelForm):
+    class Meta:
+        model = Item
+        fields = ('name', 'description', 'price', 'images', 'is_sold')
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'class': INPUT_CLASSES
+            }),
+            'description': forms.Textarea(attrs={
+                'class': INPUT_CLASSES
+            }),
+            'price': forms.TextInput(attrs={
+                'class': INPUT_CLASSES
+            }),
+            'images': forms.FileInput(attrs={
+                'class': INPUT_CLASSES
+            })
+        }

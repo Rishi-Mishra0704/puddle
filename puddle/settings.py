@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-utwh3b-2**lcnt#5q7myl!ef*_50h^m5=##m-*jz(t(2$f3*z*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['.vercel.app','.now.sh','127.0.0.1', 'localhost']
 
 LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/"
@@ -83,11 +84,11 @@ WSGI_APPLICATION = 'puddle.wsgi.application'
 
 DATABASES = {
    'default': {
-       'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'puddle',
-       'USER': 'rishi',
-       'PASSWORD': '1111',
-       'HOST': 'localhost',
+       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+       'NAME': 'bqdcammh',
+       'USER': 'bqdcammh',
+       'PASSWORD': 'pHTTiHKUnXf5774xCvdFDn26Xe15gqzz',
+       'HOST': 'peanut.db.elephantsql.com',
        'PORT': '5432',
    }
 }
@@ -129,6 +130,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIR = os.path.join(BASE_DIR, 'uploads')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'uploads')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

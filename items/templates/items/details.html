@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="grid grid-cols-5 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
         {% if item.images %}
         {% endif %}
-        <div class="col-span-2 p-6 bg-gray-100 rounded-xl">
-            <h1 class="mb-6 text-3xl">
+        <div class="md:col-span-2 lg:col-span-3 p-6 bg-gray-100 rounded-xl">
+            <h1 class="mb-6 text-2xl md:text-3xl lg:text-4xl">
                 {{ item.name }}
             </h1>
             <p class="mb-6 text-gray-500">
@@ -16,7 +16,7 @@
             </p>
             {% if item.description %}
                 <p class="mb-6 text-gray-700">
-                 <strong class="text-gray-500">Description:</strong></br>
+                 <strong class="text-gray-500">Description:</strong><br>
                  {{ item.description }}
                 </p>
             {% endif %}
@@ -34,18 +34,18 @@
     </div>
     <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
         <h2 class="mb-12 text-2xl text-center">Related Items</h2>
-        <div class="grid grid-cols-3 gap-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {% for item in related_item %}
             <div>
-                <a href="{% url "item:detail" item.id%}">
-                    <div class="col-span-3">
+                <a href="{% url "item:detail" item.id%}" class="block rounded-xl overflow-hidden bg-white hover:shadow-md">
+                    <div>
                         {% if item.images %}
-                            <img src="{{ item.images.url }}" alt="{{ item.name }}" class="rounded-xl">
+                            <img src="{{ item.images.url }}" alt="{{ item.name }}" class="rounded-t-xl w-full">
                         {% endif %}
                     </div>
                     
-                    <div class="p-6 bg-white rounded-b-lg">
-                        <h3 class="text-xl font-bold">{{ item.name }}</h3>
+                    <div class="p-6">
+                        <h3 class="text-xl md:text-2xl">{{ item.name }}</h3>
                         <p class="text-gray-500">${{ item.price }}</p>    
                     </div>
                 </a>

@@ -44,7 +44,7 @@ def new_item(request):
             item.created_by = request.user
             item.save()
 
-            return redirect('detail', pk=item.id)
+            return redirect('item:detail', pk=item.id)
         else:
             form = ItemForm()
     context = {"form": form}

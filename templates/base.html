@@ -52,6 +52,24 @@
     <!-- Your Content -->
     {% block content %}{% endblock %}
 
+    <footer class="py-6 px-6 bg-gray-800">
+      <div class="md:flex justify-between text-white">
+          <div class="w-full md:w-2/3 pr-0 md:pr-10 mb-6 md:mb-0">
+              <h3 class="mb-5 font-semibold">About</h3>
+              <p class="text-lg text-gray-400">Suscipit maxime molestias vero sed animi ratione quis quo earum porro ex? Cupiditate iure quo possimus provident tenetur voluptatum, eum fugit doloremque, consequuntur consectetur perferendis maxime quos, ipsa ex fugiat provident iusto cupiditate?</p>
+          </div>
+          <div class="w-full md:w-1/3">
+              <h3 class="mb-5 font-semibold">Menu</h3>
+              <ul class="space-y-2">
+                  <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">About</a></li>
+                  <li><a href="{% url "contact" %}" class="text-lg text-teal-500 hover:text-teal-700">Contact</a></li>
+                  <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Privacy Policy</a></li>
+                  <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Terms and conditions</a></li>
+              </ul>
+          </div>
+      </div>
+  </footer>
+
     <script>
         // Toggle mobile navbar visibility
         const mobileNavbar = document.getElementById('mobileNavbar');

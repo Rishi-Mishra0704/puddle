@@ -6,83 +6,80 @@
     <title>Puddle</title>
     {% block styles %}{% endblock %}
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   </head>
-  <body>
-    <nav
-      class="py-6 px-6 flex justify-between items-center border-b border-gray-200"
-    >
-      <a href="/" class="text-xl font-semibold"> Puddle</a>
-
-      <div class="space-x-6">
-        <a href="{% url "item:new" %}" class="text-lg font-semibold hover:text-gray-500"
-          >New Item</a
-        >
-        <a href="{% url "item:items" %}" class="text-lg font-semibold hover:text-gray-500">Browse</a>
-
-        {% if request.user.is_authenticated %}
-        <a
-          href="{% url "conversation:inbox" %}"
-          class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700"
-          >Inbox</a
-        >
-        <a
-          href="{% url "dashboard:dashboard" %}"
-          class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700"
-          >Dashboard</a
-        >
-        
-        {% else %}
-        
-        <a
-          href="{% url "signup" %}"
-          class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700"
-          >Sign up</a
-        >
-        <a
-          href="{% url "login" %}"
-          class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700"
-          >Log in</a
-        >
-        {% endif %}
-      </div>
+  <body class="bg-gray-100">
+    <!-- Desktop Navbar (Hidden on smaller screens) -->
+    <nav class="hidden md:flex justify-between items-center py-6 px-6 border-b border-gray-200">
+        <a href="/" class="text-xl font-semibold">Puddle</a>
+        <div class="space-x-6">
+            <a href="{% url "item:new" %}" class="text-lg font-semibold hover:text-gray-500">New Item</a>
+            <a href="{% url "item:items" %}" class="text-lg font-semibold hover:text-gray-500">Browse</a>
+            {% if request.user.is_authenticated %}
+            <a href="{% url "conversation:inbox" %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Inbox</a>
+            <a href="{% url "dashboard:dashboard" %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Dashboard</a>
+            {% else %}
+            <a href="{% url "signup" %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Sign up</a>
+            <a href="{% url "login" %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Log in</a>
+            {% endif %}
+        </div>
     </nav>
+
+    <!-- Mobile Navbar (Visible on smaller screens) -->
+    <div id="mobileNavbar" class="md:hidden bg-gray-900 text-white py-4 px-6 fixed top-0 left-0 w-full h-full opacity-80 hidden">
+        <div class="flex justify-between items-center">
+            <a href="/" class="text-xl font-semibold">Puddle</a>
+            <button id="mobileCloseBtn" class="text-2xl">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <a href="{% url "item:new" %}" class="block py-2 text-lg font-semibold hover:text-gray-500" onclick="closeMobileNavbar()">New Item</a>
+        <a href="{% url "item:items" %}" class="block py-2 text-lg font-semibold hover:text-gray-500" onclick="closeMobileNavbar()">Browse</a>
+        {% if request.user.is_authenticated %}
+        <a href="{% url "conversation:inbox" %}" class="block py-2 text-lg font-semibold hover:text-gray-500" onclick="closeMobileNavbar()">Inbox</a>
+        <a href="{% url "dashboard:dashboard" %}" class="block py-2 text-lg font-semibold hover:text-gray-500" onclick="closeMobileNavbar()">Dashboard</a>
+        {% else %}
+        <a href="{% url "signup" %}" class="block py-2 text-lg font-semibold hover:text-gray-500" onclick="closeMobileNavbar()">Sign up</a>
+        <a href="{% url "login" %}" class="block py-2 text-lg font-semibold hover:text-gray-500" onclick="closeMobileNavbar()">Log in</a>
+        {% endif %}
+    </div>
+
+    <!-- Hamburger Icon (Visible on smaller screens) -->
+    <button id="mobileMenuBtn" class="md:hidden fixed top-6 right-6 text-2xl" onclick="toggleMobileNavbar()">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Your Content -->
     {% block content %}{% endblock %}
 
-    <footer class="py-6 px-6 flex justify-between bg-gray-800">
-      <div class="w-2/3 pr-10">
-        <h3 class="mb-5 font-semibold text-white">About</h3>
-        <p class="text-lg text-gray-400">
-          Suscipit maxime molestias vero sed animi ratione quis quo earum porro
-          ex? Cupiditate iure quo possimus provident tenetur voluptatum, eum
-          fugit doloremque, consequuntur consectetur perferendis maxime quos,
-          ipsa ex fugiat provident iusto cupiditate?
-        </p>
-      </div>
-      <div class="w-1/3">
-        <h3 class="mb-5 font-semibold text-white">Menu</h3>
-        <ul class="space-y-2">
-          <li>
-            <a href="#" class="text-lg text-teal-500 hover:text-teal-700"
-              >About</a
-            >
-          </li>
-          <li>
-            <a href="{% url "contact" %}" class="text-lg text-teal-500 hover:text-teal-700"
-              >Contact</a
-            >
-          </li>
-          <li>
-            <a href="#" class="text-lg text-teal-500 hover:text-teal-700"
-              >Privacy Policy</a
-            >
-          </li>
-          <li>
-            <a href="#" class="text-lg text-teal-500 hover:text-teal-700"
-              >Terms and conditions</a
-            >
-          </li>
-        </ul>
-      </div>
-    </footer>
-  </body>
+    <script>
+        // Toggle mobile navbar visibility
+        const mobileNavbar = document.getElementById('mobileNavbar');
+        const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+
+        function toggleMobileNavbar() {
+            if (mobileNavbar.classList.contains('hidden')) {
+                mobileNavbar.classList.remove('hidden');
+                mobileCloseBtn.classList.remove('hidden');
+                mobileMenuBtn.classList.add('hidden');
+            } else {
+                mobileNavbar.classList.add('hidden');
+                mobileCloseBtn.classList.add('hidden');
+                mobileMenuBtn.classList.remove('hidden');
+            }
+        }
+
+        mobileCloseBtn.addEventListener('click', () => {
+            toggleMobileNavbar();
+        });
+
+        // Function to close mobile navbar
+        function closeMobileNavbar() {
+            mobileNavbar.classList.add('hidden');
+            mobileCloseBtn.classList.add('hidden');
+            mobileMenuBtn.classList.remove('hidden');
+        }
+    </script>
+</body>
 </html>

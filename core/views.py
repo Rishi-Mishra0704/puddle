@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from items.models import Category, Item
-from .forms import SignUpForm
+from .models import Contact
+from .forms import SignUpForm, ContactForm
 # Create your views here.
 
 
@@ -15,6 +16,17 @@ def index(request):
 
 
 def contact(request):
+    form = ContactForm()
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            print("valid")
+            form.save()
+            return redirect("/")
+        else:
+            form = ContactForm()
+            print("invalid")
+            print(form.errors)
     return render(request, "core/contact.html")
 
 

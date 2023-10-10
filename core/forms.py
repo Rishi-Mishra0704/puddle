@@ -39,3 +39,21 @@ class LoginForm(AuthenticationForm):
         widget=forms.PasswordInput(
             attrs={'placeholder': 'Your password', 'class': 'w-full px-4 py-6 rounded-xl'})
     )
+
+
+class ContactForm(forms.Form):
+    name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Your name', 'class': 'w-full px-4 py-6 rounded-xl'})
+    )
+
+    email = forms.EmailField(
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Your email', 'class': 'w-full px-4 py-6 rounded-xl'})
+    )
+
+    message = forms.CharField(
+        widget=forms.Textarea(
+            attrs={'placeholder': 'Your message', 'class': 'w-full px-4 py-6 rounded-xl'})
+    )
+

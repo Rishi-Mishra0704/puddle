@@ -1,32 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="w-1/2 my-6 p-6 mx-auto rounded-xl bg-gray-100">
-        <h1 class="text-2xl text-center font-bold my-4">Sign Up</h1>
+    <div class="w-full sm:w-1/2 my-6 p-4 md:p-6 mx-auto rounded-xl bg-gray-100">
+        <h1 class="text-xl md:text-2xl text-center font-bold my-4">Sign Up</h1>
 
         <form method="post" action=".">
             {% csrf_token %}
             
-
             <div class="mb-3">
-                <label class="inline-block mb-2">Username</label></br>
+                <label class="block mb-2">Username</label>
                 {{form.username}}
             </div>
             <div class="mb-3">
-                <label class="inline-block mb-2">Email</label></br>
+                <label class="block mb-2">Email</label>
                 {{form.email}}
             </div>
             <div class="mb-3">
-                <label class="inline-block mb-2">Password</label></br>
+                <label class="block mb-2">Password</label>
                 {{form.password1}}
             </div>
             <div class="mb-3">
-                <label class="inline-block mb-2">Password Confirmation</label></br>
+                <label class="block mb-2">Password Confirmation</label>
                 {{form.password2}}
             </div>
 
             {% if form.errors or form.non_field_errors %}
-                <div class="mb-3 p-6 rounded-xl bg-red-100">
+                <div class="mb-3 p-4 bg-red-100 rounded-xl">
                     {% for field in form %}
                         {{ field.errors }}
                     {% endfor %}
@@ -34,7 +33,7 @@
                 </div>
             {% endif %}
 
-            <button type="submit" class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-4 px-8 text-lg rounded my-4">Sign Up</button>
+            <button type="submit" class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-3 px-6 text-lg rounded my-4">Sign Up</button>
         </form>
     </div>
 {% endblock %}
